@@ -135,12 +135,11 @@ public class Aplikacja extends JFrame {
 	private void initUI() {
 		setTitle("Biblioteczka");
 		setSize(800, 400);
-		createMenuBar();
 		
 		this.table = createTable();
 		this.tableSorter = new TableRowSorter<TableModel>(this.tableModel);
 		
-		JTextField searchTextField = this.createSearch();
+		createMenuBar();
 		
 		Vector<Book> bookList = AplikacjaModel.findAll();
 		
@@ -159,7 +158,7 @@ public class Aplikacja extends JFrame {
 		container.setLayout(new GridLayout(2, 1));
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		container.add(searchTextField, BorderLayout.CENTER);
+//		container.add(searchTextField, BorderLayout.CENTER);
 		container.add(scrollPane, BorderLayout.CENTER);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -184,6 +183,8 @@ public class Aplikacja extends JFrame {
 		JMenu fileMenu = new JMenu("ADD");
 		JMenuItem addBook = new JMenuItem("NOW BOOK");
 
+		JTextField searchTextField = this.createSearch();
+		
 		addBook.addActionListener(new ActionListener() {
 
 			@Override
@@ -195,6 +196,7 @@ public class Aplikacja extends JFrame {
 
 		fileMenu.add(addBook);
 		menuBar.add(fileMenu);
+		menuBar.add(searchTextField);
 
 		setJMenuBar(menuBar);
 	}
