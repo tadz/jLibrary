@@ -92,14 +92,14 @@ class BookInfo extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String id = idTextField.getText();
+				Integer id;
 				String title = titleTextField.getText();
 				String author = authorTextField.getText();
 				String publisher = publisherTextField.getText();
 				String publicationYear = publicationYearTextField.getText();
 				String owner = ownerTextField.getText();
 
-				db.addRecordToBookstore(title, author, publisher, Integer.parseInt(publicationYear), owner);
+				id = db.addRecordToBookstore(title, author, publisher, Integer.parseInt(publicationYear), owner);
 				
 				tableModel.addRow(new Object[] { id, title, author, publisher,
 						publicationYear, owner });

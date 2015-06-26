@@ -88,8 +88,9 @@ public class DB {
 	}
 
 	// dodanie rekordu do tabeli w bazie
-	public void addRecordToBookstore(String title, String author,
+	public int addRecordToBookstore(String title, String author,
 			String publisher, int publicationYear, String owner) {
+		
 		try {
 			String sql = "INSERT INTO BOOKSTORE (title, author, publisher, publicationYear, owner)"
 					+ "VALUES ('"
@@ -104,13 +105,17 @@ public class DB {
 					+ owner
 					+ "'"
 					+ ")";
+			
 			this.stmt.executeUpdate(sql);
 
+			return this.stmt.getGeneratedKeys().getInt(1);
+			
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
-		System.out.println("Records created successfully");
+	
+		return -1;
 	}
 
 	public static String getId() {
