@@ -1,24 +1,24 @@
 package model;
 
 public class Book {
-	private String name, author, publisher;
+	private String title, author, publisher;
 	private int id, publicationYear;
 	
 	// usunęłam argumenty z Product, zeby productModel nie wywalał błędu.
-	public Book(int id, String name, String author, String publisher, int publicationYear) {
+	public Book(int id, String title, String author, String publisher, int publicationYear) {
 		this.id = id;
-		this.name = name;
+		this.title = title;
 		this.author = author;
 		this.publisher = publisher;
 		this.publicationYear = publicationYear;
 	}
 	
-	public String getName() {
-		return name;
+	public String gettitle() {
+		return title;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	public String getAuthor() {

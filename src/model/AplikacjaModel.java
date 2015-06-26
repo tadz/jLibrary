@@ -19,7 +19,7 @@ public class AplikacjaModel {
 			while (rs.next()) {
 				Book p = new Book(
 						++id, 
-						rs.getString("name"), 
+						rs.getString("title"), 
 						rs.getString("author"), 
 						rs.getString("publisher"), 
 						rs.getInt("publicationYear")

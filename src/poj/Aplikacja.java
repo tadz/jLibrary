@@ -48,25 +48,28 @@ class BookInfo extends JFrame {
 		Container container = getContentPane();
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(5, 2));
+		panel.setLayout(new GridLayout(6, 2));
 		container.add(panel, BorderLayout.CENTER);
 
 		final JTextField idTextField = new JTextField();
-		final JTextField nameTextField = new JTextField();
+		final JTextField titleTextField = new JTextField();
 		final JTextField authorTextField = new JTextField();
 		final JTextField publisherTextField = new JTextField();
 		final JTextField publicationYearTextField = new JTextField();
+		final JTextField ownerTextField = new JTextField();
 		JButton okButton = new JButton("OK");
 		JButton cancelButton = new JButton("Cancel");
 
-		panel.add(new JLabel("name"));
-		panel.add(nameTextField);
+		panel.add(new JLabel("Title"));
+		panel.add(titleTextField);
 		panel.add(new JLabel("Author"));
 		panel.add(authorTextField);
 		panel.add(new JLabel("Publisher"));
 		panel.add(publisherTextField);
 		panel.add(new JLabel("Publication Year"));
 		panel.add(publicationYearTextField);
+		panel.add(new JLabel("Owner"));
+		panel.add(ownerTextField);
 		panel.add(cancelButton, BorderLayout.WEST);
 		panel.add(okButton, BorderLayout.EAST);
 
@@ -86,17 +89,23 @@ class BookInfo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String id = idTextField.getText();
-				String name = nameTextField.getText();
+				String title = titleTextField.getText();
 				String author = authorTextField.getText();
 				String publisher = publisherTextField.getText();
 				String publicationYear = publicationYearTextField.getText();
+				String owner = ownerTextField();
 
-				db.addRecordToBookstore(name, author, publisher, Integer.parseInt(publicationYear));
+				db.addRecordToBookstore(title, author, publisher, Integer.parseInt(publicationYear));
 				
-				tableModel.addRow(new Object[] { id, name, author, publisher,
+				tableModel.addRow(new Object[] { id, title, author, publisher,
 						publicationYear });
 
 				close();
+			}
+
+			private String ownerTextField() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 	}
@@ -134,7 +143,7 @@ public class Aplikacja extends JFrame {
 	private JTable createTable() {
 		JTable table = new JTable(tableModel);
 		tableModel.addColumn("id");
-		tableModel.addColumn("name");
+		tableModel.addColumn("title");
 		tableModel.addColumn("author");
 		tableModel.addColumn("publisher");
 		tableModel.addColumn("publicationYear");
@@ -143,8 +152,8 @@ public class Aplikacja extends JFrame {
 
 	private void createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu = new JMenu("Dodaj");
-		JMenuItem addBook = new JMenuItem("Nowa Książka");
+		JMenu fileMenu = new JMenu("ADD");
+		JMenuItem addBook = new JMenuItem("NOW BOOK");
 
 		addBook.addActionListener(new ActionListener() {
 

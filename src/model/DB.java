@@ -72,7 +72,7 @@ public class DB {
 		try {
 			String sql = "CREATE TABLE BOOKSTORE "
 					+ "(id INT PRIMARY KEY     NOT NULL,"
-					+ " name          TEXT    NOT NULL, "
+					+ " title          TEXT    NOT NULL, "
 					+ " author          TEXT     NOT NULL, "
 					+ " publisher    TEXT     NOT NULL,"
 					+ " publicationYear        INT)";
@@ -85,12 +85,12 @@ public class DB {
 	}
 
 	// dodanie rekordu do tabeli w bazie
-	public void addRecordToBookstore(String name, String author,
+	public void addRecordToBookstore(String title, String author,
 			String publisher, int publicationYear) {
 		try {
-			String sql = "INSERT INTO BOOKSTORE (id, name, author, publisher, publicationYear)"
+			String sql = "INSERT INTO BOOKSTORE (id, title, author, publisher, publicationYear)"
 					+ "VALUES (1,'"
-					+ name
+					+ title
 					+ "','"
 					+ author
 					+ "','"
