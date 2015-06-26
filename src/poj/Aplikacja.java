@@ -33,10 +33,10 @@ class BookInfo extends JFrame {
 		this.db.setConnection();
 		this.db.setStatement();
 		
-		this.db.dropTableBookstore();
-		this.db.createTableBookstore();
+//		this.db.dropTableBookstore();
+//		this.db.createTableBookstore();
 
-		this.db.closeConnection();
+//		this.db.closeConnection();
 		
 		this.tableModel =  tableModel;
 		initUI();
@@ -93,19 +93,14 @@ class BookInfo extends JFrame {
 				String author = authorTextField.getText();
 				String publisher = publisherTextField.getText();
 				String publicationYear = publicationYearTextField.getText();
-				String owner = ownerTextField();
+				String owner = ownerTextField.getText();
 
-				db.addRecordToBookstore(title, author, publisher, Integer.parseInt(publicationYear));
+				db.addRecordToBookstore(title, author, publisher, Integer.parseInt(publicationYear), owner);
 				
 				tableModel.addRow(new Object[] { id, title, author, publisher,
-						publicationYear });
+						publicationYear, owner });
 
 				close();
-			}
-
-			private String ownerTextField() {
-				// TODO Auto-generated method stub
-				return null;
 			}
 		});
 	}
@@ -146,7 +141,8 @@ public class Aplikacja extends JFrame {
 		tableModel.addColumn("title");
 		tableModel.addColumn("author");
 		tableModel.addColumn("publisher");
-		tableModel.addColumn("publicationYear");
+		tableModel.addColumn("publication year");
+		tableModel.addColumn("owner");
 		return table;
 	}
 

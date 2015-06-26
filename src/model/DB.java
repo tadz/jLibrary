@@ -71,30 +71,39 @@ public class DB {
 	public void createTableBookstore() {
 		try {
 			String sql = "CREATE TABLE BOOKSTORE "
-					+ "(id INT PRIMARY KEY     NOT NULL,"
-					+ " title          TEXT    NOT NULL, "
-					+ " author          TEXT     NOT NULL, "
-					+ " publisher    TEXT     NOT NULL,"
-					+ " publicationYear        INT)";
+					+ "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
+					+ " title	TEXT    NOT NULL, "
+					+ " author	TEXT	NOT NULL, "
+					+ " publisher	TEXT	NOT NULL,"
+					+ " publicationYear INT,"
+					+ " owner	TEXT	NOT NULL)";
+			
 			this.stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
+		
 		System.out.println("Table created successfully");
 	}
 
 	// dodanie rekordu do tabeli w bazie
 	public void addRecordToBookstore(String title, String author,
-			String publisher, int publicationYear) {
+			String publisher, int publicationYear, String owner) {
 		try {
-			String sql = "INSERT INTO BOOKSTORE (id, title, author, publisher, publicationYear)"
-					+ "VALUES (1,'"
+			String sql = "INSERT INTO BOOKSTORE (title, author, publisher, publicationYear, owner)"
+					+ "VALUES ('"
 					+ title
 					+ "','"
 					+ author
 					+ "','"
-					+ publisher + "'," + publicationYear + ")";
+					+ publisher 
+					+ "','" 
+					+ publicationYear
+					+ "','"
+					+ owner
+					+ "'"
+					+ ")";
 			this.stmt.executeUpdate(sql);
 
 		} catch (Exception e) {

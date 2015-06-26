@@ -22,7 +22,8 @@ public class AplikacjaModel {
 						rs.getString("title"), 
 						rs.getString("author"), 
 						rs.getString("publisher"), 
-						rs.getInt("publicationYear")
+						rs.getInt("publicationYear"),
+						rs.getString("owner")
 					);
 				
 				listBooks.add(p);
