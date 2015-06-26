@@ -20,6 +20,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.*;
+
+import model.AplikacjaModel;
+import model.Book;
 import model.DB;
 
 class BookInfo extends JFrame {
@@ -126,7 +130,20 @@ public class Aplikacja extends JFrame {
 		createMenuBar();
 
 		JTable table = createTable();
-
+		
+		Vector<Book> bookList = AplikacjaModel.findAll();
+		
+		for (Book book : bookList) {
+			tableModel.addRow(new Object[] { 
+				book.getId(), 
+				book.getTitle(), 
+				book.getAuthor(), 
+				book.getPublisher(),	
+				book.getPublicationYear(), 
+				book.getOwner() 
+			});
+		}
+		
 		Container container = getContentPane();
 
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -137,12 +154,14 @@ public class Aplikacja extends JFrame {
 
 	private JTable createTable() {
 		JTable table = new JTable(tableModel);
+		
 		tableModel.addColumn("id");
 		tableModel.addColumn("title");
 		tableModel.addColumn("author");
 		tableModel.addColumn("publisher");
 		tableModel.addColumn("publication year");
 		tableModel.addColumn("owner");
+		
 		return table;
 	}
 

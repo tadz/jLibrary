@@ -4,12 +4,10 @@ import java.util.*;
 import java.sql.*;
 
 public class AplikacjaModel {
-
-	private int id = 0;
 	
-	public List<Book> findAll() {
+	public static Vector<Book> findAll() {
 		try {
-			List<Book> listBooks = new ArrayList<>();
+			Vector<Book> listBooks = new Vector<Book>();
 			
 			PreparedStatement ps = DB.getConnection().prepareStatement(
 					"select * from BOOKSTORE");
@@ -17,16 +15,16 @@ public class AplikacjaModel {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				Book p = new Book(
-						++id, 
-						rs.getString("title"), 
-						rs.getString("author"), 
-						rs.getString("publisher"), 
-						rs.getInt("publicationYear"),
-						rs.getString("owner")
-					);
+				Book b = new Book(
+					rs.getInt("id"), 
+					rs.getString("title"), 
+					rs.getString("author"), 
+					rs.getString("publisher"), 
+					rs.getInt("publicationYear"),
+					rs.getString("owner")
+				);
 				
-				listBooks.add(p);
+				listBooks.add(b);
 			}
 			
 			return listBooks;
