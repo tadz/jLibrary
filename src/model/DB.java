@@ -103,4 +103,8 @@ public class DB {
 		}
 		System.out.println("Records created successfully");
 	}
+
+	public static String getId() {
+		return ID;
+	}
 }

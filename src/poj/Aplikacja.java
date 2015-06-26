@@ -1,5 +1,6 @@
 package poj;
 
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -24,7 +25,7 @@ import model.DB;
 class BookInfo extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	DefaultTableModel tableModel;
+	private DefaultTableModel tableModel;
 	private DB db;
 	
 	public BookInfo(DefaultTableModel tableModel) {
@@ -32,12 +33,12 @@ class BookInfo extends JFrame {
 		this.db.setConnection();
 		this.db.setStatement();
 		
-//		this.db.dropTableBookstore();
-//		this.db.createTableBookstore();
+		this.db.dropTableBookstore();
+		this.db.createTableBookstore();
 
-//		db.closeConnection();
+		this.db.closeConnection();
 		
-		this.tableModel = tableModel;
+		this.tableModel =  tableModel;
 		initUI();
 	}
 
@@ -64,7 +65,7 @@ class BookInfo extends JFrame {
 		panel.add(authorTextField);
 		panel.add(new JLabel("Publisher"));
 		panel.add(publisherTextField);
-		panel.add(new JLabel("Publication_Year"));
+		panel.add(new JLabel("Publication Year"));
 		panel.add(publicationYearTextField);
 		panel.add(cancelButton, BorderLayout.WEST);
 		panel.add(okButton, BorderLayout.EAST);
@@ -75,9 +76,10 @@ class BookInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				close();
 			}
-		});
+		}
+		);
 
-		DB db = this.db;
+		final DB db = this.db;
 		
 		okButton.addActionListener(new ActionListener() {
 
@@ -142,7 +144,7 @@ public class Aplikacja extends JFrame {
 	private void createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("Dodaj");
-		JMenuItem addBook = new JMenuItem("Nowa Ksi¹¿ka");
+		JMenuItem addBook = new JMenuItem("Nowa KsiÄ…Å¼ka");
 
 		addBook.addActionListener(new ActionListener() {
 
