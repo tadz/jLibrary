@@ -1,5 +1,9 @@
 # poj
 
+## DONE 11.12.2015
+	- dodanie ISBN
+	- edycja rekordu 
+	
 ## DONE 26.06.2015
 	- DB - odczyt/zapis
 	- wyszukiwarka
@@ -16,7 +20,7 @@
 	- wygląd
 	- wypożyczanie
 	- stronicowanie
-	- brak funkcji edycji i usuwania rekordow
+	- usuwania rekordow
 	- obsługa błędów
 	- testy jednostkowe
 	- testy funkcjonalne

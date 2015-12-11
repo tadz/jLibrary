@@ -2,6 +2,7 @@ package poj;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,6 +28,7 @@ import java.util.*;
 
 import model.AplikacjaModel;
 import model.Book;
+import model.DB;
 
 public class Aplikacja extends JFrame {
 
@@ -43,8 +47,30 @@ public class Aplikacja extends JFrame {
 		setSize(800, 400);
 
 		this.table = createTable();
-		this.tableSorter = new TableRowSorter<TableModel>(this.tableModel);
+		this.tableModel.addTableModelListener(new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				if (e.getType() == TableModelEvent.UPDATE)
+		        {
+		            int row = e.getFirstRow();
+		            int column = e.getColumn();
+		            
+	                TableModel model = (TableModel)e.getSource();
 
+	                int id = Integer.parseInt(model.getValueAt(row, 0).toString());
+	                String fieldName = model.getColumnName(column).toString();
+	                String fieldValue = model.getValueAt(row, column).toString();	
+	                
+	        		DB db = new DB();
+	        		db.setConnection();
+	        		db.setStatement();
+	                
+	        		db.updateRecord(id, fieldName, fieldValue);
+		        }
+			}
+	    });	
+		
 		createMenuBar();
 		fillDataTable();
 
@@ -67,8 +93,9 @@ public class Aplikacja extends JFrame {
 		tableModel.addColumn("author");
 		tableModel.addColumn("publisher");
 		tableModel.addColumn("publication year");
+		tableModel.addColumn("isbn");
 		tableModel.addColumn("owner");
-
+		
 		return table;
 	}
 
@@ -135,7 +162,7 @@ public class Aplikacja extends JFrame {
 		for (Book book : bookList) {
 			tableModel.addRow(new Object[] { book.getId(), book.getTitle(),
 					book.getAuthor(), book.getPublisher(),
-					book.getPublicationYear(), book.getOwner() });
+					book.getPublicationYear(), book.getIsbn(), book.getOwner() });
 		}
 
 	}

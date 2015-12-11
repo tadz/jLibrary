@@ -72,6 +72,7 @@ public class DB {
 					+ "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ " title	TEXT    NOT NULL, " + " author	TEXT	NOT NULL, "
 					+ " publisher	TEXT	NOT NULL," + " publicationYear INT,"
+					+ "isbn TEXT NOT NULL,"
 					+ " owner	TEXT	NOT NULL)";
 
 			this.stmt.executeUpdate(sql);
@@ -85,17 +86,23 @@ public class DB {
 
 	// dodanie rekordu do tabeli w bazie
 	public int addRecordToBookstore(String title, String author,
-			String publisher, int publicationYear, String owner) {
+			String publisher, int publicationYear, String isbn, String owner) {
 
 		try {
-			String sql = "INSERT INTO BOOKSTORE (title, author, publisher, publicationYear, owner)"
+			String sql = "INSERT INTO BOOKSTORE (title, author, publisher, publicationYear, isbn, owner)"
 					+ "VALUES ('"
 					+ title
 					+ "','"
 					+ author
 					+ "','"
 					+ publisher
-					+ "','" + publicationYear + "','" + owner + "'" + ")";
+					+ "','" 
+					+ publicationYear 
+					+ "','"
+					+ isbn
+					+ "','"
+					+ owner 
+					+ "'" + ")";
 
 			this.stmt.executeUpdate(sql);
 
@@ -108,7 +115,28 @@ public class DB {
 
 		return -1;
 	}
+	public void updateRecord(int id, String fieldName, String fieldValue) {
+		try {
+		
+			if (fieldName.equals("publication year")) { 
+				fieldName = "publicationYear"; 
+			}
+			
+			String sql = "UPDATE BOOKSTORE"
+				+ " SET " 
+				+ fieldName
+				+ "='"
+				+ fieldValue
+				+ "' WHERE id = " + id;
+			
+			this.stmt.executeUpdate(sql);
 
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
+	}
 	public static String getId() {
 		return ID;
 	}

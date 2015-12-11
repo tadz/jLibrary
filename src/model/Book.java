@@ -1,19 +1,26 @@
 package model;
 
 public class Book {
-	private String title, author, publisher, owner;
+	private String title, author, publisher,isbn, owner;
 	private int id, publicationYear;
 
 	public Book(int id, String title, String author, String publisher,
-			int publicationYear, String owner) {
+			int publicationYear, String isbn, String owner) {
 		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.publisher = publisher;
 		this.publicationYear = publicationYear;
+		this.isbn = isbn;
 		this.owner = owner;
 	}
 
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn){
+		this.isbn = isbn;
+	}
 	public String getOwner() {
 		return owner;
 	}

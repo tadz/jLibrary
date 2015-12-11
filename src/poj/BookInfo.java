@@ -29,8 +29,8 @@ class BookInfo extends JFrame {
 		this.db.setConnection();
 		this.db.setStatement();
 
-		// this.db.dropTableBookstore();
-		// this.db.createTableBookstore();
+//		 this.db.dropTableBookstore();
+//		 this.db.createTableBookstore();
 
 		// this.db.closeConnection();
 
@@ -44,7 +44,7 @@ class BookInfo extends JFrame {
 		Container container = getContentPane();
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(6, 2));
+		panel.setLayout(new GridLayout(8, 2));
 		container.add(panel, BorderLayout.CENTER);
 
 		final JTextField titleTextField = new JTextField();
@@ -52,6 +52,7 @@ class BookInfo extends JFrame {
 		final JTextField publisherTextField = new JTextField();
 		final JTextField publicationYearTextField = new JTextField();
 		final JTextField ownerTextField = new JTextField();
+		final JTextField isbnTextField = new JTextField();
 		JButton okButton = new JButton("OK");
 		JButton cancelButton = new JButton("Cancel");
 
@@ -63,6 +64,8 @@ class BookInfo extends JFrame {
 		panel.add(publisherTextField);
 		panel.add(new JLabel("Publication Year"));
 		panel.add(publicationYearTextField);
+		panel.add(new JLabel("ISBN"));
+		panel.add(isbnTextField);
 		panel.add(new JLabel("Owner"));
 		panel.add(ownerTextField);
 		panel.add(cancelButton, BorderLayout.WEST);
@@ -87,13 +90,14 @@ class BookInfo extends JFrame {
 				String author = authorTextField.getText();
 				String publisher = publisherTextField.getText();
 				String publicationYear = publicationYearTextField.getText();
+				String isbn = isbnTextField.getText();
 				String owner = ownerTextField.getText();
 
 				id = db.addRecordToBookstore(title, author, publisher,
-						Integer.parseInt(publicationYear), owner);
+						Integer.parseInt(publicationYear), isbn, owner);
 
 				tableModel.addRow(new Object[] { id, title, author, publisher,
-						publicationYear, owner });
+						publicationYear, isbn, owner });
 
 				close();
 			}
