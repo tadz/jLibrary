@@ -6,6 +6,9 @@
 	- dodawanie nowego rekordu
 	- sortowanie
 	- lepsza architektura aplikacji
+## DONE11.12.2015
+	- dodanie ISBN
+	- edycja rekordu
 
 ## TODO
 	- centralna baza
@@ -16,7 +19,7 @@
 	- wygląd
 	- wypożyczanie
 	- stronicowanie
-	- brak funkcji edycji i usuwania rekordow
+	- usuwania rekordow
 	- obsługa błędów
 	- testy jednostkowe
 	- testy funkcjonalne
