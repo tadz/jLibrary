@@ -1,14 +1,15 @@
 # poj
 
+## DONE 11.12.2015
+	- dodanie ISBN
+	- edycja rekordu 
+	
 ## DONE 26.06.2015
 	- DB - odczyt/zapis
 	- wyszukiwarka
 	- dodawanie nowego rekordu
 	- sortowanie
 	- lepsza architektura aplikacji
-## DONE11.12.2015
-	- dodanie ISBN
-	- edycja rekordu
 
 ## TODO
 	- centralna baza
